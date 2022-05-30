@@ -10,8 +10,9 @@ public interface TourResultRepository extends JpaRepository<TourResult, Long> {
 
     List<TourResult> findAllByTourOrderByTotalTime (Tour tour);
 
-    List<TourResult> findAllByTourOrderByTotalMountainPoints (Tour tour);
+    List<TourResult> findAllByTourOrderByTotalMountainPointsDesc(Tour tour);
 
-    List<TourResult> findAllByTourOrderByTotalSpringPoints (Tour tour);
+    List<TourResult> findAllByTourOrderByTotalSprintPointsDesc(Tour tour);
 
+    List<TourResult> findAllByTourOrderByRiderAge(Tour tour);
 }

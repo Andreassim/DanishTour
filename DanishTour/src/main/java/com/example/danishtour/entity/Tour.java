@@ -27,6 +27,11 @@ public class Tour {
     @OrderBy("totalTime")
     private List<TourResult> tourResults;
 
+
+    public long getId() {
+        return id;
+    }
+
     public List<TourResult> getTourResults() {
         return tourResults;
     }

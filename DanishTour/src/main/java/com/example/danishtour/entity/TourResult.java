@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.time.Duration;
-import java.time.LocalTime;
 
 @Entity
 public class TourResult {
@@ -22,7 +21,7 @@ public class TourResult {
 
     private Duration totalTime;
 
-    private int totalSpringPoints;
+    private int totalSprintPoints;
 
     private int totalMountainPoints;
 
@@ -51,11 +50,11 @@ public class TourResult {
     }
 
     public int getTotalSprintPoints() {
-        return totalSpringPoints;
+        return totalSprintPoints;
     }
 
     public void setTotalSprintPoints(int totalSpringPorints) {
-        this.totalSpringPoints = totalSpringPorints;
+        this.totalSprintPoints = totalSpringPorints;
     }
 
     public int getTotalMountainPoints() {

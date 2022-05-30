@@ -2,6 +2,7 @@ package com.example.danishtour.service;
 
 import com.example.danishtour.entity.Tour;
 import com.example.danishtour.repository.TourRepository;
+import com.example.danishtour.wrapper.TourResultsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,6 @@ public class TourService {
         return tourRepository.save(tour);
     }
 
-
     public void deleteTour(Tour tour){
         tourRepository.delete(tour);
     }
@@ -31,4 +31,6 @@ public class TourService {
     public List<Tour> allTours(){
         return tourRepository.findAll();
     }
+
+
 }

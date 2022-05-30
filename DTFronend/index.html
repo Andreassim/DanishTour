@@ -5,8 +5,62 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
+  <script src="js/bootstrap/bootstrap.js"></script>
+  <script type="module" src="js/main.js"></script>
 </head>
 <body>
+<section id="header">
+  <div class="container-fluid bg-primary">
+    <div class="text-center text-light">Tour Håndtering</div>
+  </div>
+</section>
+<section class="container-fluid h-100 w-100">
+  <div class="row h-100 w-100">
+    <div class="col-2 mh-100">
+      <div class="p-3 bg-light min-vh-100">
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a id="tour-link" class="nav-link link-dark" style="cursor: pointer">
+              Vælg Tour
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="leaders-link" class="nav-link link-dark" style="cursor: pointer">
+              Samlet Resultat
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="team-link" class="nav-link link-dark" style="cursor: pointer">
+              Hold Resultat
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="all-link" class="nav-link link-dark" style="cursor: pointer">
+              Alles Resultat
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="country-link" class="nav-link link-dark" style="cursor: pointer">
+              Bedste Land
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="rider-link" class="nav-link link-dark" style="cursor: pointer">
+              Tilføj Rytter
+            </a>
+          </li>
+        </ul>
+      </div>
+      </ul>
 
+    </div>
+    <div class="col mh-100">
+      <div class="container mt-2">
+        <div id="content"></div>
+      </div>
+    </div>
+  </div>
+</section>
 </body>
 </html>
