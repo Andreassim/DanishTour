@@ -1,7 +1,5 @@
 package com.example.danishtour.controller;
 
-
-
 import com.example.danishtour.entity.Rider;
 import com.example.danishtour.entity.Team;
 import com.example.danishtour.service.TeamService;
