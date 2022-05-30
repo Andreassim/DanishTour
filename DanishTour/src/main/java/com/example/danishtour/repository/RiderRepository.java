@@ -10,4 +10,6 @@ public interface RiderRepository extends JpaRepository<Rider, Long> {
 
     List<Rider> findAllByTeam(Team team);
 
+    List<Rider> findAllByIdIsNotIn(List<Long> ids);
+
 }

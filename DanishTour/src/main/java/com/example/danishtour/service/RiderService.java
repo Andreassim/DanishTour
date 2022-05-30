@@ -6,6 +6,7 @@ import com.example.danishtour.repository.RiderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,14 @@ public class RiderService {
 
     public List<Rider> findAllByTeam(Team team){
         return riderRepository.findAllByTeam(team);
+    }
+
+    public List<Rider> findRidersNotInList(List<Rider> list){
+        List<Long> longs = new ArrayList<>();
+        for (Rider rider: list) {
+            longs.add(rider.getId());
+        }
+        return riderRepository.findAllByIdIsNotIn(longs);
     }
 
 }

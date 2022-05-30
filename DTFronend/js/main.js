@@ -2,6 +2,8 @@ import TourSelectComponent from "./component/TourSelectComponent.js";
 import ElementContainer from "./lib/ElementContainer.js";
 import AllCompetionComponent from "./component/AllCompetionComponent.js";
 import PelotonComponent from "./component/PelotonComponent.js";
+import NewRiderComponent from "./component/NewRiderComponent.js";
+import addRiderComponent from "./component/AddRiderComponent.js";
 
 
 let contentContainer = new ElementContainer("content")
@@ -48,13 +50,24 @@ document.getElementById('country-link').addEventListener('click', () => {
   contentContainer.updateDOM();
 })
 
-document.getElementById('rider-link').addEventListener('click', () => {
-  changeActive(document.getElementById('rider-link'))
-  content = new TourSelectComponent();
+document.getElementById('addRider-link').addEventListener('click', async () => {
+  changeActive(document.getElementById('addRider-link'))
+  let riders = await fetchRiders();
+  content = new addRiderComponent(riders, contentContainer);
   contentContainer.clearCompenents();
+  contentContainer.addComponent(content);
   contentContainer.updateDOM();
 })
 
+
+document.getElementById('newRider-link').addEventListener('click', () => {
+  changeActive(document.getElementById('newRider-link'))
+  let tour = JSON.parse(sessionStorage.getItem("selectedTour"))
+  content = new NewRiderComponent(tour.teams, contentContainer)
+  contentContainer.clearCompenents();
+  contentContainer.addComponent(content);
+  contentContainer.updateDOM();
+})
 
 function changeActive(element) {
   let list = element.closest("ul")
@@ -98,6 +111,17 @@ async function fetchFastest() {
   let json = await response.json();
 
   return json;
+}
+
+async function fetchRiders(){
+  let selectedTour = JSON.parse(sessionStorage.getItem("selectedTour"));
+  const endpoint = 'http://localhost:8080/tour/'+selectedTour.id+'/availableRiders'
+
+  let response = await fetch(endpoint);
+  let json = await response.json();
+
+  return json;
+
 }
 
 
