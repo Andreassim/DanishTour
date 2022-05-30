@@ -2,7 +2,9 @@ package com.example.danishtour.service;
 
 import com.example.danishtour.entity.Rider;
 import com.example.danishtour.entity.Team;
+import com.example.danishtour.entity.Tour;
 import com.example.danishtour.repository.RiderRepository;
+import com.example.danishtour.repository.StageResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ import java.util.Optional;
 public class RiderService {
     @Autowired
     private RiderRepository riderRepository;
+
+    @Autowired
+    private TourService tourService;
+
+
 
     public List<Rider> findAll() {
         return riderRepository.findAll();
@@ -29,6 +36,13 @@ public class RiderService {
 
     public boolean deleteRider(Rider rider) {
         try {
+            List<Tour> tours = tourService.allTours();
+            for(Tour tour : tours){
+                if(tour.getRiders().contains(rider)){
+                    tour.getRiders().remove(rider);
+                    tourService.updateTour(tour);
+                };
+            }
             riderRepository.delete(rider);
         } catch (Exception e) {
             return false;

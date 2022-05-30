@@ -26,16 +26,28 @@ class TourSelectComponent extends Component {
                 </div>
                 <div class="row"></div>
                 <div class="card-text">Førende rytter</div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">${state.tourResults[1].rider.name}</li>
-                    <li class="list-group-item">${this.formatTime(state.tourResults[1].totalTime)}</li>
-                </ul>
+                ${this.renderLeader(state)}
              </div>
         </div>
     </div>
 
     `
     return tours.map(tour => template(tour)).join("")
+  }
+
+  renderLeader(state){
+    if(state.tourResults.length == 0){
+      return ``
+    }
+    let template = (state) => `<ul class="list-group list-group-flush">
+                    <li class="list-group-item">${state.tourResults[0].rider.name}</li>
+                    <li class="list-group-item">${this.formatTime(state.tourResults[1].totalTime)}</li>
+                </ul>
+
+    `
+
+    return template(state);
+
   }
 
   addEventListeners() {

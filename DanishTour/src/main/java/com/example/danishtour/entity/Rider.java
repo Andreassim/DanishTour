@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Rider {
@@ -16,8 +18,22 @@ public class Rider {
 
     private int age;
 
-    @ManyToOne
+    @ManyToOne()
     private Team team;
+
+    @JsonBackReference
+    @OneToMany(cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "rider_id")
+    private List<StageResult> stageResults;
+
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "riders_id")
+    private Tour tours;
+
+    @OneToMany(mappedBy = "rider", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    private Collection<TourResult> tourResult;
 
     public Long getId() {
         return id;
@@ -46,4 +62,7 @@ public class Rider {
     public void setTeam(Team team) {
         this.team = team;
     }
+
+
+
 }

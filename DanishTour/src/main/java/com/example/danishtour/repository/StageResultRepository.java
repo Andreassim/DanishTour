@@ -12,4 +12,6 @@ public interface StageResultRepository extends JpaRepository<StageResult, Long> 
     List<StageResult> findAllByStageIsIn(List<Stage> stages);
     List<StageResult> findAllByStageIsInAndRiderIs(List<Stage> stages, Rider rider);
 
+    void deleteAllByRider(Rider rider);
+
 }

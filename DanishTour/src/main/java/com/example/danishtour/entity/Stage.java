@@ -23,6 +23,11 @@ public class Stage {
     @JsonBackReference
     private Tour tour;
 
+
+    public long getId() {
+        return id;
+    }
+
     private LocalTime startTime;
 
 

@@ -1,6 +1,6 @@
 import Component from "../lib/Component.js";
 
-class AddRiderCompoenent extends Component {
+class DeleteRiderComponent extends Component {
   constructor(riders, container) {
     super(riders, (state) => `
 <form id="addRiderForm" class="border rounded shadow p-3">
@@ -11,11 +11,7 @@ class AddRiderCompoenent extends Component {
           ${this.renderOptions(state)}
         </select>
     </div>
-    <div class="mb-3">
-        <label for="tour" class="form-label">Tour</label>
-        <input id="tour" type="text" class="form-control" disabled placeholder="${JSON.parse(sessionStorage.getItem("selectedTour")).name}">
-</div>
-  <button type="submit" class="btn btn-primary">Tilføj</button>
+  <button type="submit" class="btn btn-danger">Slet</button>
 </form>
     `, container);
   }
@@ -30,30 +26,38 @@ class AddRiderCompoenent extends Component {
     let form = document.getElementById('addRiderForm');
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      let selectedTour = JSON.parse(sessionStorage.getItem("selectedTour"));
-      let endpoint = 'http://localhost:8080/tour/'+ selectedTour.id +'/addRider'
-
-      let formRider = document.getElementById('rider').value;
-
-      let body = {
-        id:formRider
-      }
-      console.log(body);
+      let rider = document.getElementById('rider').value;
+      let endpoint = 'http://localhost:8080/rider/delete/' + rider
 
       let options = {
+        method:"DELETE",
+
+      }
+
+      let response = await fetch(endpoint,options);
+      let json = await response.json();
+
+      await updateTour();
+      this.refresh();
+    })
+
+    async function updateTour(){
+      let selectedTour = JSON.parse(sessionStorage.getItem("selectedTour"));
+      const endpoint = 'http://localhost:8080/tour/'+selectedTour.id+'/update'
+
+      let options ={
         method:"POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(body)
       }
 
       let response = await fetch(endpoint,options);
       let json = await response.json();
 
       sessionStorage.setItem("selectedTour", JSON.stringify(json));
-    })
 
+    }
 
   }
 
 }
-export default AddRiderCompoenent;
+export default DeleteRiderComponent;

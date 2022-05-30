@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TourResultService {
@@ -28,7 +29,16 @@ public class TourResultService {
     public List<TourResult> updateResults(Tour tour) {
         List<TourResult> tourResults = new ArrayList<>();
         for (Rider rider : tour.getRiders()) {
-            TourResult tourResult = new TourResult();
+            Optional<TourResult> optionalTourResult = tourResultRepository.findByRider(rider);
+            TourResult tourResult;
+            if(optionalTourResult.isPresent()){
+                tourResult = optionalTourResult.get();
+                tourResult.setTotalSprintPoints(0);
+                tourResult.setTotalMountainPoints(0);
+                tourResult.setTotalTime(Duration.ZERO);
+            }else{
+                tourResult = new TourResult();
+            }
             tourResult.setTotalTime(Duration.ZERO);
             List<Stage> stages = stageRepository.findAllByTour(tour);
             List<StageResult> results = stageResultRepository.findAllByStageIsInAndRiderIs(stages, rider);

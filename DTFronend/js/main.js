@@ -4,6 +4,8 @@ import AllCompetionComponent from "./component/AllCompetionComponent.js";
 import PelotonComponent from "./component/PelotonComponent.js";
 import NewRiderComponent from "./component/NewRiderComponent.js";
 import addRiderComponent from "./component/AddRiderComponent.js";
+import AddStageResultComponent from "./component/AddStageResultComponent.js";
+import deleteRiderComponent from "./component/DeleteRiderComponent.js";
 
 
 let contentContainer = new ElementContainer("content")
@@ -69,6 +71,24 @@ document.getElementById('newRider-link').addEventListener('click', () => {
   contentContainer.updateDOM();
 })
 
+document.getElementById('addStageResult-link').addEventListener('click', () => {
+  changeActive(document.getElementById('addStageResult-link'))
+  let tour = JSON.parse(sessionStorage.getItem("selectedTour"))
+  content = new AddStageResultComponent(tour.stages,tour.riders, contentContainer)
+  contentContainer.clearCompenents();
+  contentContainer.addComponent(content);
+  contentContainer.updateDOM();
+})
+
+document.getElementById('deleteRider-link').addEventListener('click', () => {
+  changeActive(document.getElementById('deleteRider-link'))
+  let tour = JSON.parse(sessionStorage.getItem("selectedTour"))
+  content = new deleteRiderComponent(tour.riders, contentContainer)
+  contentContainer.clearCompenents();
+  contentContainer.addComponent(content);
+  contentContainer.updateDOM();
+})
+
 function changeActive(element) {
   let list = element.closest("ul")
   let active = list.querySelector('.active')
@@ -123,5 +143,4 @@ async function fetchRiders(){
   return json;
 
 }
-
 

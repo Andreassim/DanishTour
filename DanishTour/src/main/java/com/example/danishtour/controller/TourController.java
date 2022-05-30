@@ -110,4 +110,15 @@ public class TourController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
+
+    @PostMapping
+    @RequestMapping("/{id}/update")
+    public ResponseEntity<Tour> updateTourResults(@PathVariable long id){
+        Optional<Tour> optionalTour = tourService.tourById(id);
+        if(optionalTour.isPresent()){
+            tourResultService.updateResults(optionalTour.get());
+            return new ResponseEntity<>(tourService.updateTour(optionalTour.get()), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

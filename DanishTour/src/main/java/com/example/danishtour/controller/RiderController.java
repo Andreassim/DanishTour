@@ -32,15 +32,13 @@ public class RiderController {
         return riders;
     }
 
-    @PutMapping
-    @RequestMapping("/update")
+    @PutMapping("/update")
     public Rider updateRider(@RequestBody Rider rider) {
         return riderService.updateRider(rider);
     }
 
 
-    @DeleteMapping
-    @RequestMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> deleteRider(@PathVariable long id) {
         Optional<Rider> rider = riderService.findById(id);
         if (rider.isPresent()) {
