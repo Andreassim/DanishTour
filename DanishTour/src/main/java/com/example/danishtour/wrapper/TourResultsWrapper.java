@@ -9,7 +9,7 @@ public class TourResultsWrapper {
     private List<TourResult> totalTime;
     private List<TourResult> mountainPoints;
     private List<TourResult> sprintPoints;
-    private List<TourResult> age; //TODO Figure this one out
+    private List<TourResult> age;
 
     public List<TourResult> getTotalTime() {
         return totalTime;

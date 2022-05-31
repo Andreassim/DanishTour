@@ -6,6 +6,7 @@ import NewRiderComponent from "./component/NewRiderComponent.js";
 import addRiderComponent from "./component/AddRiderComponent.js";
 import AddStageResultComponent from "./component/AddStageResultComponent.js";
 import deleteRiderComponent from "./component/DeleteRiderComponent.js";
+import EditRiderComponent from "./component/EditRiderComponent.js";
 
 
 let contentContainer = new ElementContainer("content")
@@ -84,6 +85,15 @@ document.getElementById('deleteRider-link').addEventListener('click', () => {
   changeActive(document.getElementById('deleteRider-link'))
   let tour = JSON.parse(sessionStorage.getItem("selectedTour"))
   content = new deleteRiderComponent(tour.riders, contentContainer)
+  contentContainer.clearCompenents();
+  contentContainer.addComponent(content);
+  contentContainer.updateDOM();
+})
+
+document.getElementById('editRider-link').addEventListener('click', () => {
+  changeActive(document.getElementById('editRider-link'))
+  let tour = JSON.parse(sessionStorage.getItem("selectedTour"))
+  content = new EditRiderComponent(tour.teams,tour.riders, contentContainer)
   contentContainer.clearCompenents();
   contentContainer.addComponent(content);
   contentContainer.updateDOM();

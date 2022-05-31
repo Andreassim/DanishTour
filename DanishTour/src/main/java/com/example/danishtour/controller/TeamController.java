@@ -20,7 +20,7 @@ public class TeamController {
     private TeamService teamService;
 
     @GetMapping
-    @RequestMapping("/riders/{id}")
+    @RequestMapping("/{id}/riders")
     public ResponseEntity<List<Rider>> getAllTeamRiders(@PathVariable long id){
         Optional<Team> optionalTeam =  teamService.findById(id);
         if(optionalTeam.isPresent()){

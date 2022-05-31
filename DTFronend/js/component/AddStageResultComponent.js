@@ -31,7 +31,7 @@ class AddStageResultComponent extends Component {
             <input type="number" class="form-control" id="MP">
         </div>
         <div class="mb-3">
-            <label for="SP" class="form-label">Springpoints</label>
+            <label for="SP" class="form-label">Sprintpoints</label>
             <input type="number" class="form-control" id="SP">
         </div>
         <div class="mb-3">
