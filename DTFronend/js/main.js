@@ -49,13 +49,6 @@ document.getElementById('all-link').addEventListener('click', async () => {
   contentContainer.updateDOM();
 })
 
-document.getElementById('country-link').addEventListener('click', () => {
-  changeActive(document.getElementById('country-link'))
-  content = new TourSelectComponent();
-  contentContainer.clearCompenents();
-  contentContainer.updateDOM();
-})
-
 document.getElementById('addRider-link').addEventListener('click', async () => {
   changeActive(document.getElementById('addRider-link'))
   let riders = await fetchRiders();
