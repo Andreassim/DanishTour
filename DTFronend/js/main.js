@@ -7,6 +7,7 @@ import addRiderComponent from "./component/AddRiderComponent.js";
 import AddStageResultComponent from "./component/AddStageResultComponent.js";
 import deleteRiderComponent from "./component/DeleteRiderComponent.js";
 import EditRiderComponent from "./component/EditRiderComponent.js";
+import TeamCompetionComponent from "./component/TeamCompetionComponent.js";
 
 
 let contentContainer = new ElementContainer("content")
@@ -30,10 +31,12 @@ document.getElementById('leaders-link').addEventListener('click', async () => {
   contentContainer.updateDOM();
 })
 
-document.getElementById('team-link').addEventListener('click', () => {
+document.getElementById('team-link').addEventListener('click', async () => {
   changeActive(document.getElementById('team-link'))
-  content = new TourSelectComponent();
+  let results = await fetchFastestTeams()
+  content = new TeamCompetionComponent(results, contentContainer);
   contentContainer.clearCompenents();
+  contentContainer.addComponent(content);
   contentContainer.updateDOM();
 })
 
@@ -154,3 +157,12 @@ async function fetchRiders(){
 
 }
 
+async function fetchFastestTeams() {
+
+  const endpoint = 'http://localhost:8080/team/fastest'
+
+  let response = await fetch(endpoint);
+  let json = await response.json();
+
+  return json;
+}

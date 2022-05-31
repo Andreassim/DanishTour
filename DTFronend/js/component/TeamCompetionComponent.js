@@ -1,16 +1,15 @@
 import Component from "../lib/Component.js";
 
 
-class PelotonComponent extends Component {
+class TeamCompetitionComponent extends Component {
   constructor(results, container) {
     super(results, (state) => `
-                <H2>Alle Ryttere</H2>
+                <H2>Hold Konkurencen - 5 hurtigste tider tælles med</H2>
             <table class="table table-striped border shadow">
                 <thead style="background-color: Yellow">
                     <th scope="col">#</th>
-                    <th scope="col">Navn</th>
-                    <th scope="col">Alder</th>
                     <th scope="col">Hold</th>
+                    <th scope="col">Navn</th>
                     <th scope="col">Tid</th>
                 </thead>
                 <tbody>
@@ -25,9 +24,8 @@ class PelotonComponent extends Component {
       response += `
         <tr>
           <th scope="col">${i + 1}</td>
-          <td>${result[i].rider.name}</td>
-          <td>${result[i].rider.age}</td>
-          <td>${result[i].rider.team.acronym}</td>
+          <td>${result[i].team.acronym}</td>
+          <td>${result[i].team.name}</td>
           <td>${this.formatTime(result[i].totalTime)}</td>
         </tr>
       `
@@ -40,4 +38,4 @@ class PelotonComponent extends Component {
     return str.slice(2,str.length) //Hardcoded removing first to Letters in string - Duration comes as PTXXHourYYmmZZss
   }
 }
-export default PelotonComponent;
+export default TeamCompetitionComponent;

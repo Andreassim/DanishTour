@@ -66,7 +66,6 @@ public class TourResultService {
         tourResultsWrapper.setAge(limitByAge(tourResultRepository.findAllByTourOrderByRiderAge(tour),25));
         return tourResultsWrapper;
 
-
     }
 
 
@@ -84,6 +83,10 @@ public class TourResultService {
         }
         return response;
 
+    }
+
+    public List<TourResult> findAllByTeam(Team team){
+        return tourResultRepository.findByRiderTeamOrderByTotalTime(team);
     }
 
 }

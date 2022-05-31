@@ -3,7 +3,6 @@ package com.example.danishtour.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
 
